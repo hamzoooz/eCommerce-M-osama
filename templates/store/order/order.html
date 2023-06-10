@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+<title> {% block title %} My Order {% endblock title %} </title>
+
+{% block content %}
+
+<div class="py-3 bg-primary">
+    <div class="container ">
+        <a href="{% url 'index'  %}" class="text-white">Home / </a>
+        <a href="{% url 'my_order' %}" class="text-white"> My Order </a>
+    </div>
+</div>
+
+
+<div class="container my-3">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card-body shadow">
+                <h3 class="">My Order 
+                    {% comment %} <a href="{% url 'my_order' %} " class="btn btn-warning float-end" > <i class="fa fa-reply"></i> Back </a> {% endcomment %}
+                </h3>
+                <table class="table table-striped ">
+                    <thead>
+                        <tr class="table-primary">
+                            <th>Order Data </th>
+                            <th>Tracking .No </th>
+                            <th>Total Price </th>
+                            <th>Status </th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in order %}
+                        <tr>
+                            <td> {{ item.create_at }} </td>
+                            <td> {{ item.tracking_no }} </td>
+                            <td> {{ item.total_price }} </td>
+                            <td> {{ item.satuts }} </td>
+                            <td> 
+                                <a href="{% url 'orderview'  item.tracking_no  %}" class="btn btn-primary"> <i class="fa fa-eye"></i> View</a>    
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% comment %} conutry, pincode, total_price, payment_mode, payment_id, satuts, message, tracking_no) {% endcomment %}
+{% comment %} Order(*, create_at, update_at, user, fname, lname, email, phone, address, city, stats, {% endcomment %}
+{% endblock content %}

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+<title> {% block title %} Card  {% endblock title %} </title>
+{% block content %}
+
+<div class="py-3 bg-primary" >
+    <div class="container " >
+        <a href="{% url 'index'  %}" class="text-white fw-bold " >Home / </a>
+        {% comment %} <a href="{% url 'card'  %}" class=" text-white disabled" >card </a> {% endcomment %}
+        <a href="#" class=" text-white disabled" > Card </a>        
+    </div>
+</div>
+
+
+<div class="py-5" >
+    <div class="container" >
+        <div class="row" >
+            <div class="col-md-12" >
+                <div class="card shadow ">
+                    <div class="card-body carddata">
+                        {% if card %}
+                        {% for item in card %}
+                            <div class="row product_data " >
+                                <div class="col-md-2 my-auto" >
+                                    <img src="{{ item.product.product_image.url }}" height="70px" width="70px" alt="image product" />
+                                </div >
+                                
+                                <div class="col-md-3 my-auto" >
+                                    <h6> {{ item.product.name }} </h6>
+                                </div >
+
+                                <div class="col-md-2 my-auto" >
+                                    {% if item.product.selling_price %}
+                                    <h6> SD {{ item.product.selling_price | stringformat:"d"  }} </h6>
+                                    {% else %}
+                                    <h6> Free </h6>
+
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-3 my-auto" >
+                                    {% csrf_token %}
+                                    {% if item.product.quantity >= item.product_qty %}
+                                            <input type='hidden' value="{{ item.product.id }}" class="prod_id" />
+                                            <div class="input-group text-center mb-3" style="width:130px;" >
+                                                {% comment %} <button class="input-group-text ChangQuantity decrement-btn" >-</button>
+                                                <input type="text" name="quantity" class="form-control qty-input text-center" value="{{item.product_qty}}" />
+                                                <button class="input-group-text ChangQuantity increcment-btn" >+</button> {% endcomment %}
+                                                <a href="{{ products.link }}" class="btn btn-warning me-3  " ><i class="fa fa-shopping-cart" ></i>Pay Now</a>
+                                            </div>
+                                    {% else %}
+                                    <h6> Out of Stok </h6>
+                                    {% endif %}
+                                </div >
+                                <div class="col-md-2 my-auto" >
+                                    <btuuon class="btn btn-danger delete-card-item" ><i class="fa fa-trash" ></i> Remove <btuuon>
+                                </div>
+                            </div >
+                        {% endfor %}
+                        {% comment %} <a href="{% url 'checkout' %}" class="btn btn-outline-success" > Checkout </a> {% endcomment %}
+                        {% else %}
+                            <h4> Your card is Empty !  </h4>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+
+
+{% endblock content %}

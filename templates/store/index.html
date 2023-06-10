@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load  static %}
+
+{% block content %}
+{% include 'template-parts/slider.html' %}
+<div class="container" >
+    <div class="trending_product">
+        <h1 class="py-2" > Trending Products  </h1><hr>
+          <div class="owl-carousel owl-theme "> {% csrf_token %}
+
+            {% for item in trending_product %}
+            <div class="item " >
+              <div class="card shadow">
+                  <div class="card-body" >
+                      <a href="{% url 'productview' item.category.slug  item.slug %}" class="text-muat" >
+                          <div class="category-image" >
+                            {% if item.product_image %}
+                                <img src="{{ item.product_image.url }}"  class="card-img-top  w-100" alt="category-image" />
+                            {% endif %}
+                          </div>
+                          <h4  class="text-center"> {{ item.name }} </h4>
+                      </a>
+                      
+                      {% comment %} prices {% endcomment %}
+                      <div class="row">
+                        <div class="col-6"> <span class="float-start"><s>{{ item.original_price }} </s> </span> </div>
+                        <div class="col-6"> <span class="float-end">{{ item.selling_price }}</span></div>
+                      </div>
+
+                      {% comment %} button for pay and more  {% endcomment %}
+                      <div class="row">
+                        <div class="col-6"> <a href="{% url 'productview' item.category.slug  item.slug %}" class="btn btn-primary float-start  "><i class="fa fa-eye">  </i> More...</a> </div>
+                        <div class="col-6"> <a href="{{ item.link }}" class="btn btn-primary float-end "> <i class="fa fa-shopping-cart"></i> Pay Now</a> </div>
+                      </div>
+
+                    </div><!-- ./card-body  -->
+              </div><!-- ./card shadow  -->
+            </div><!-- ./item  -->
+            {% endfor %}
+        </div><!-- ./owl-carousel owl-theme  -->
+    </div><!-- ./trending_product  -->
+</div><!-- ./container  -->
+
+
+{% if whatsapp.status %}
+<a href="https://wa.me/{{whatsapp.number}}?text={{ whatsapp.message|urlize }}" class="whatsapp-chat"  style="position: fixed; bottom: 11px;" >
+  <div class="whatsapp-chat" style="
+    background-image: url('{{ whatsapp.icon.url  }}');
+    z-index: 99;
+    background-size: contain;
+    position: sticky;
+    border-radius: 50%;
+    border: 5px #ddd solid;
+    width: 70px;
+    height: 70px;
+    " ></div>
+</a> 
+{% endif %}
+
+{% endblock content  %}
+
+{% block scripts %}{% endblock scripts %}
+
+

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+<title> {% block title %} Collections  {% endblock title %} </title>
+{% block content %}
+
+<div class="py-3 bg-primary" >
+    <div class="container" >
+        <a href="{% url 'index'  %}" class="text-white" >Home / </a>
+        <a href="{% url 'collections' %}" class="text-white" > Collections</a>
+        <!-- <a href="{% url 'collections' %}" class="text-white" > Collections</a> -->
+    </div>
+</div>
+
+<div class="container" >
+    <div class="row" >
+            <h1 class="text-center   p-2" > Collections </h1>
+            <hr>
+            <div class="row" >
+              {% for item in category %}
+                <div class="col-md-4 col-6  pt-2 " >
+                    <a href="{% url 'collectionsview' item.slug %}" class="text-muat" >
+                      <div class="card" >
+                          <div class="card-body" >
+                              <div class="category-image" >
+                                {% if item.image %}
+                                    <img src="{{ item.image.url }}"  class="card-img-top  w-100" alt="category-image" />
+                                {% endif %}
+                              </div>
+                              <h4  class="text-center"> {{ item.name }} </h4>
+                          </div>
+                      </div>
+                    </a>
+                </div>
+                {% endfor %}
+              </div>
+    </div>
+</div>
+
+
+{% endblock content %}
