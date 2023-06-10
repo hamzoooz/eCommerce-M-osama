@@ -1,3 +1,5 @@
+from django.views.static import serve 
+from django.conf.urls.static import url 
 from django.urls import path, include
 from . import views
 from store.controler import authview, card, wishlist, checkout, order
@@ -41,4 +43,4 @@ urlpatterns = [
     url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}), 
 
 ]
-# urlpatterns = urlpatterns+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns = urlpatterns+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
