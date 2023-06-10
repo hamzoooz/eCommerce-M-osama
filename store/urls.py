@@ -24,13 +24,9 @@ urlpatterns = [
     path('update-card', card.updatecard, name='updatecard'),
     path('delete_card_item', card.delete_card_item, name='delete_card_item'),
     
-    
-    
-    
     path('wishlist', wishlist.index, name='wishlist'),
     path('add-to-wishlist', wishlist.addwishlist, name='addtowishlist'),
     path('delete-to-wishlist', wishlist.deletewishlistiteme, name='deletewishlistiteme'),
-    
     
     
     path('checkout', checkout.checkout, name='checkout'),
