@@ -26,13 +26,13 @@ SECRET_KEY = 'django-insecure-e1dllfiwq-4=tye#%j8qfx5rzv(_c_3zyq1*$)+k+=)&srk*l%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 # https://id.heroku.com
-ALLOWED_HOSTS = ['127.0.0.1', 'shopeyblack.heroku.com','heroku.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'shopeyblack.com', '164.90.182.200' , 'shopeyblack.heroku.com', 'heroku.com']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin',
+    # 'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -89,16 +89,16 @@ WSGI_APPLICATION = 'eCommerce.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
         # #################################
-        # 'ENGINE': 'django.db.backends.mysql',
-        # 'NAME': 'eCommerce',
-        # 'USER': 'hamzoooz',
-        # 'PASSWORD': 'Hamza@2020',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'hamzoooz',
+        'USER': 'hamzoooz',
+        'PASSWORD': 'Hamza@2020',
         # 'HOST': '127.0.0.1',
-        # # 'HOST': 'localhost',
-        # 'PORT': '3306',
+        'HOST': 'localhost',
+        'PORT': '',
         # #################################
         # 'ENGINE': 'django.db.backends.mysql',
         # 'NAME': 'ecom',

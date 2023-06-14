@@ -29,4 +29,3 @@
 #         fields = ['title', 'content', ...]
 # # With these steps, you should now have a rich text editor for the `content` field of your post model that allows users to easily add videos, links, images, and text.
 
-
